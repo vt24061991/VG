@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_raw_staging__accounts
+    description: ""
+    columns:
+      - name: account_id
+        data_type: integer
+        description: ""
+        constraints:
+          - type: primary_key
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        data_type: integer
+        description: ""
+
+      - name: account_type
+        data_type: varchar
+        description: ""
+
+      - name: account_opening_date
+        data_type: date
+        description: ""
