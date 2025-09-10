@@ -75,8 +75,8 @@ help...
 - [ ] Please make use of tests. Use dbt's testing functionality to ensure integrity of your models and check for data anomalies.
 
 **Implementation notes:**
-- All tests can be run with: dbt test
-  see vt_casestudy_overview for more info 
+- All tests can be run with: `dbt test`
+  (see vt_casestudy_overview for more info)
 
 
 **Data Catalog:**
@@ -84,9 +84,7 @@ help...
 - [ ] Please generate a data catalog
 
 **Implementation notes:**
-- dbt data catalog is generated and served with:
-  dbt docs generate
-  dbt docs serve
+- The dbt data catalog is generated using `dbt docs generate` and can be served locally with `dbt docs serve`.
   
  To explore the catalog, use: http://localhost:8080 or see transformation/catalog.json
 
