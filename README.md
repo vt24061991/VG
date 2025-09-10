@@ -75,10 +75,7 @@ help...
 - [ ] Please make use of tests. Use dbt's testing functionality to ensure integrity of your models and check for data anomalies.
 
 **Implementation notes:**
-- All tests can be run with:
-  ```sh
-  dbt test
-  ```
+- All tests can be run with: dbt test
   see vt_casestudy_overview for more info 
 
 
@@ -88,10 +85,9 @@ help...
 
 **Implementation notes:**
 - dbt data catalog is generated and served with:
-  ```sh
   dbt docs generate
   dbt docs serve
-  ```
+  
  To explore the catalog, use: http://localhost:8080.
 
 **Submission:**
