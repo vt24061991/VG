@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_raw_staging__currencies
+    description: "Staging currencies with validated 3-letter ISO codes and a modified timestamp."
+    columns:
+      - name: currency_iso_code
+        description: "Validated 3-letter ISO code."
+        tests:
+          - not_null
+          - unique
+          - currency_iso_code_3_letters
+      - name: currency
+        description: "Currency descriptive name."
+        tests:
+          - not_null
+      - name: modified_date 
+        description: "Load timestamp (system time when staging model runs)."

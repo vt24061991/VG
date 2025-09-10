@@ -2,37 +2,48 @@ version: 2
 
 models:
   - name: stg_raw_staging__transactions
-    description: ""
+    description: "Staging transactions with parsed date, numeric amount and normalized currency code."
     columns:
       - name: transaction_id
         data_type: integer
-        description: ""
+        description: "Source transaction identifier."
         constraints:
           - type: primary_key
         tests:
           - not_null
-          - unique
+          - unique 
 
       - name: transaction_date
         data_type: date
-        description: ""
+        description: "Parsed transaction date."
+        tests:
+          - not_null
 
       - name: account_id
         data_type: integer
-        description: ""
+        description: "FK to accounts staging."
+        constraints:
+          - type: foreign_key
+            to: ref('stg_raw_staging__accounts')
+            to_columns: account_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_raw_staging__accounts')
+              field: account_id
 
       - name: transaction_type
         data_type: varchar
-        description: ""
+        description: "Type of the transaction."
 
       - name: transaction_amount
-        data_type: varchar
-        description: ""
+        data_type: decimal(18,5)
+        description: "Transaction amount (DECIMAL(18,5))."
+        tests:
+          - not_null
 
-      - name: transaction_currency
+      - name: currency_iso_code
         data_type: varchar
-        description: ""
-        constraints:
-          - type: foreign_key
-            to: ref('stg_raw_staging__fx_rates')
-            to_columns: currency_iso_code
+        description: "3-letter ISO currency code (nullable if missing)."
+        tests:
+          - currency_iso_code_3_letters

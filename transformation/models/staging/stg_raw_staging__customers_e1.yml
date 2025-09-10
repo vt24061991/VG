@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_raw_staging__customers_e1
+    description: "Deduplicated customers derived from stg_raw_staging__customers."
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier after deduplication."
+        constraints:
+          - type: primary_key
+        tests:
+          - not_null
+          - unique
+      - name: firstname
+        description: "Customer first name."
+      - name: lastname
+        description: "Customer last name."
+      - name: age
+        description: "Customer age."
+      - name: branch_id
+        description: "Associated branch identifier." 

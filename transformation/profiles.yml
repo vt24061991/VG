@@ -8,7 +8,7 @@ default:
   outputs:
     dev:
       type: duckdb
-      path: 'casestudy.duckdb'
+      path: '/workspaces/dbt-case/transformation/casestudy.duckdb'
       extensions:
         - icu
   target: dev

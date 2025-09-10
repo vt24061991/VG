@@ -1,20 +1,22 @@
+version: 2
+
 models:
   - name: stg_raw_staging__fx_rates
-    description: ""
+    description: "Staging FX rates with parsed numeric rate and DATE."
     columns:
       - name: currency_iso_code
         data_type: varchar
-        description: ""
-        constraints:
-          - type: primary_key
+        description: "3‑letter ISO currency code."
         tests:
           - not_null
-          - unique
-
+          - currency_iso_code_3_letters
       - name: fx_rate
-        data_type: date
-        description: ""
-
+        data_type: decimal(18,5)
+        description: "FX rate parsed to DECIMAL(18,5)."
+        tests:
+          - not_null
       - name: fx_rate_date
-        data_type: varchar
-        description: ""
+        data_type: date
+        description: "Rate date."
+        tests:
+          - not_null

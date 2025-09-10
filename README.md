@@ -49,9 +49,15 @@ help...
 1. [ ] Please create a repository and commit this content (or clone and change remote)
 2. [ ] Start running the devcontainer and set up your remote connection
 
+**Implementation notes:**
+- Repository cloned, changed remote and initialized in a devcontainer for isolated, reproducible development. Connection was set up using DBCODE.
+
 **Exploration:**
 
 - [ ] Please showcase an exploration of the provided data and your findings
+
+**Implementation notes:**
+- see vt_casestudy_overview
 
 **Data Loading / Transformation:**
 
@@ -60,14 +66,33 @@ help...
   customer, account, branch and date. To simplify everything, the provided exchange rate table should be used for all
   dates.
 
+**Implementation notes:**
+- The `import_seed.py` was used to create the `currencies.csv` file in the `seeds` folder. After that, `currencies.csv` was loaded as a dbt seed with correct delimiter and encoding settings using `dbt seed`. 
+- Two reporting models were created in the reporting schema: one with account_id (fct_transactions_eur_daily) and account_type (out_fct_transactions_eur_daily). They're identical though.
+
 **Data Quality / Testing:**
 
-- [ ] Please make use of tests. Use dbt's testing functionality to ensure integrity of your models and check for data
-  anomalies.
+- [ ] Please make use of tests. Use dbt's testing functionality to ensure integrity of your models and check for data anomalies.
+
+**Implementation notes:**
+- All tests can be run with:
+  ```sh
+  dbt test
+  ```
+  see vt_casestudy_overview for more info 
+
 
 **Data Catalog:**
 
 - [ ] Please generate a data catalog
+
+**Implementation notes:**
+- dbt data catalog is generated and served with:
+  ```sh
+  dbt docs generate
+  dbt docs serve
+  ```
+ To explore the catalog, use: http://localhost:8080.
 
 **Submission:**
 

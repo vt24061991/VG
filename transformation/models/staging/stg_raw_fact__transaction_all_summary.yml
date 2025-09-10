@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_raw_fact__transaction_all_summary
+    description: "Wide staging fact table combining transactions, customers, accounts, loans and FX (EUR conversion)."
+    columns:
+      - name: transaction_id
+        description: "Original transaction identifier."
+        tests:
+          - not_null
+      - name: customer_id
+        description: "Customer id."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_raw_staging__customers_e1')
+              field: customer_id
+      - name: account_id
+        description: "Account identifier."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_raw_staging__accounts')
+              field: account_id
+      - name: account_type
+        description: "Account type."
+        tests:
+          - not_null
+      - name: branch_id
+        description: "Associated branch identifier."
+      - name: transaction_date
+        description: "Date of the transaction."
+        tests:
+          - not_null
+      - name: currency_iso_code
+        description: "3‑letter ISO currency code."
+      - name: transaction_amount
+        description: "Transaction amount."
+      - name: transaction_amount_eur
+        description: "Transaction amount converted to EUR using latest FX rate."
+        tests:
+          - not_null
+      - name: fx_rate
+        description: "FX rate used (EUR per unit of currency)."
+      - name: fx_rate_date
+        description: "Date of the FX rate snapshot applied."
+      - name: loan_id
+        description: "Related loan id."
+        tests:
+          - relationships:
+              to: ref('stg_raw_staging__loans')
+              field: loan_id
+              where: "loan_id is not null"
+      - name: loan_amount
+        description: "Loan amount."
+      - name: loan_status
+        description: "Current loan status."
+      - name: loan_type
+        description: "Type of the loan."

@@ -2,19 +2,23 @@ version: 2
 
 models:
   - name: stg_raw_staging__loans
-    description: ""
+    description: "Staging loans with cleaned approval/rejection date and normalized loan_type."
     columns:
       - name: customer_id
         data_type: integer
-        description: ""
         constraints:
           - type: foreign_key
             to: ref('stg_raw_staging__customers')
             to_columns: customer_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_raw_staging__customers')
+              field: customer_id
 
       - name: loan_id
         data_type: integer
-        description: ""
+        description: "Primary key for the loan record."
         constraints:
           - type: primary_key
         tests:
@@ -22,25 +26,25 @@ models:
           - unique
 
       - name: loan_amount
-        data_type: varchar
-        description: ""
+        data_type: decimal(18,5)
+        description: "Loan amount."
 
       - name: loan_type
         data_type: varchar
-        description: ""
+        description: "Loan type derived from loant_type source column."
 
       - name: interest_rate
-        data_type: varchar
-        description: ""
+        data_type: decimal(18,5)
+        description: "Interest rate."
 
       - name: loan_term
         data_type: integer
-        description: ""
+        description: "Loan term."
 
       - name: approval_rejection_date
         data_type: date
-        description: ""
+        description: "Parsed date from multiple possible input formats."
 
       - name: loan_status
         data_type: varchar
-        description: ""
+        description: "Current loan status."

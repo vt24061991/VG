@@ -7,10 +7,11 @@ with source as (
 renamed as (
 
     select
-        customer_id,
+        customer_id, 
         firstname,
         lastname,
-        Age as 'age'
+        Age as 'age', 
+        branch_id
 
     from source
 

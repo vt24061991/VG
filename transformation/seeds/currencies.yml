@@ -1,0 +1,14 @@
+version: 2
+
+seeds:
+  - name: currencies
+    description: "Reference list of currencies and their ISO codes (seeded from CSV)."
+    columns:
+      - name: currency
+        description: "Currency name."
+        tests:
+          - not_null
+      - name: currency_iso_code
+        description: "ISO currency code raw data."
+        tests:
+          - not_null

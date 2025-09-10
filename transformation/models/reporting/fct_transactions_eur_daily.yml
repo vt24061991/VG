@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: fct_transactions_eur_daily
+    description: >
+      Daily EUR transaction totals per customer, account id, branch using the latest FX
+      rate per currency code includes count of transactions aggregated.
+    columns:
+      - name: customer_id
+        description: "Customer identifier."
+        tests: [not_null]
+      - name: account_id
+        description: "Account identifier."
+        tests: [not_null]
+      - name: branch_id
+        description: "Branch identifier."       
+        tests: [not_null]
+      - name: transaction_date
+        description: "Transaction date."        
+        tests: [not_null]
+      - name: total_transaction_amount_eur
+        description: "Summed of transaction amount in EUR."
+        tests: [not_null]
+      - name: total_transaction_count
+        description: "Count of transactions aggregated."
+        tests: [not_null]
