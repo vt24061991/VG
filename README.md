@@ -88,7 +88,7 @@ help...
   dbt docs generate
   dbt docs serve
   
- To explore the catalog, use: http://localhost:8080.
+ To explore the catalog, use: http://localhost:8080 or see transformation/catalog.json
 
 **Submission:**
 
